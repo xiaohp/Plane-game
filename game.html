@@ -3,20 +3,13 @@
     <head>
         <meta charset="utf-8">
         <title>飞机大战</title>
-        <style media="screen">
-            body {
-                text-align: center;
-            }
-            canvas {
-                border: 1px black solid;
-            }
-        </style>
-        <!-- gua game 相关文件 -->
-        <script src='guagame/utils.js'></script>
-        <script src='guagame/gua_game.js'></script>
-        <script src='guagame/gua_scene.js'></script>
-        <script src='guagame/gua_image.js'></script>
-        <script src='guagame/gua_partical_system.js'></script>
+        <link rel="stylesheet" href="css/master.css">
+        <!-- game 骨架文件 -->
+        <script src='game/utils.js'></script>
+        <script src='game/game.js'></script>
+        <script src='game/scene.js'></script>
+        <script src='game/image.js'></script>
+        <script src='game/partical_system.js'></script>
         <!-- 场景文件 -->
         <script src='scene/main/player.js'></script>
         <script src='scene/main/bullet.js'></script>
@@ -31,59 +24,44 @@
     </head>
     <body>
         <canvas id="id-canvas" width="400" height="600"></canvas>
-        <hr>
-        <input id=id-input-speed type="range" value="1">
-        <div class="">
-            <!-- <textarea id="id-text-log" rows="20" cols="50"></textarea> -->
-        </div>
-        <div class="">
-            <label>
-                <input type="range" class="gua-auto-slider" name="" value="" data-value="config.player_speed">玩家速度：
-                <span class="gua-label"></span>
-            </label>
+
+        <div class="tip">
+            <p>
+                操作说明：使用键盘控制, 按 WASD 控制飞机方向
+                按 J 发射子弹
+            </p>
         </div>
 
-        <div class="">
-            <label>
-                <input type="range" class="gua-auto-slider" name="" value="" max="10" data-value="config.fire_cooldown">子弹冷却时间：
-                <span class="gua-label"></span>
-            </label>
-        </div>
+        <div class="control-box">
+            <input id=id-input-speed class="hide" type="range" value="1">
+            <div class="hide">
+                <label>
+                    <input type="range" class="gua-auto-slider" name="" value="" data-value="config.player_speed">玩家速度：
+                    <span class="gua-label"></span>
+                </label>
+            </div>
 
-        <div class="">
-            <label>
-                <input type="range" class="gua-auto-slider" name="" value="" min="-10" max="10" data-value="config.cloud_speed">cloud speed
-                <span class="gua-label"></span>
-            </label>
-        </div>
+            <div class="hide">
+                <label>
+                    <input type="range" class="gua-auto-slider" name="" value="" max="10" data-value="config.fire_cooldown">子弹冷却时间：
+                    <span class="gua-label"></span>
+                </label>
+            </div>
 
-        <div class="">
-            <label>
-                <input type="range" class="gua-auto-slider" name="" value="" data-value="config.bullet_speed">bullet速度：
-                <span class="gua-label"></span>
-            </label>
-        </div>
-        <script src=main.js></script>
-        <script type="text/javascript">
-            var es = sel => document.querySelectorAll(sel)
-            var bindAll = function(sel, eventName, callback) {
-                var l = es(sel)
-                for (var i = 0; i < l.length; i++) {
-                    var input = l[i]
-                    input.addEventListener(eventName, function(event) {
-                        callback(event)
-                    })
-                }
-            }
+            <div class="hide">
+                <label>
+                    <input type="range" class="gua-auto-slider" name="" value="" min="-10" max="10" data-value="config.cloud_speed">cloud speed
+                    <span class="gua-label"></span>
+                </label>
+            </div>
 
-            bindAll('.gua-auto-slider', 'input', function(event) {
-                var target = event.target
-                var bindVar = target.dataset.value
-                var v = target.value
-                eval(bindVar + '=' + v)
-                var label = target.closest('label').querySelector('.gua-label')
-                label.innerText = v
-            })
-        </script>
+            <div class="hide">
+                <label>
+                    <input type="range" class="gua-auto-slider" name="" value="" data-value="config.bullet_speed">bullet速度：
+                    <span class="gua-label"></span>
+                </label>
+            </div>
+        </div>
+        <script src="main.js" charset="utf-8"></script>
     </body>
 </html>

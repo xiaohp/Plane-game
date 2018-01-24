@@ -1,5 +1,17 @@
 const e = sel => document.querySelector(sel)
 
+const es = sel => document.querySelectorAll(sel)
+
+const bindAll = function(sel, eventName, callback) {
+    var l = es(sel)
+    for (var i = 0; i < l.length; i++) {
+        var input = l[i]
+        input.addEventListener(eventName, function(event) {
+            callback(event)
+        })
+    }
+}
+
 const log = console.log.bind(console)
 
 const imageFromPath = function(path) {

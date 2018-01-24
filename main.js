@@ -54,6 +54,15 @@ var __main = function() {
     })
 
     enableDebugMode(game, true)
+    // 绑定调试
+    bindAll('.gua-auto-slider', 'input', function(event) {
+        var target = event.target
+        var bindVar = target.dataset.value
+        var v = target.value
+        eval(bindVar + '=' + v)
+        var label = target.closest('label').querySelector('.gua-label')
+        label.innerText = v
+    })
 }
 
 __main()
